@@ -1,0 +1,217 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Registrar Paciente</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    background:#f5f7f6;
+    font-family:Arial,sans-serif;
+}
+
+.sidebar{
+    width:250px;
+    height:100vh;
+    position:fixed;
+    background:#006341;
+    color:white;
+}
+
+.logo{
+    text-align:center;
+    padding:25px;
+    border-bottom:1px solid rgba(255,255,255,.2);
+}
+
+.logo img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+}
+
+.logo h3{
+    margin-top:10px;
+    font-size:20px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    padding:15px 25px;
+    text-decoration:none;
+}
+
+.sidebar a:hover{
+    background:#004d32;
+}
+
+.contenido{
+    margin-left:250px;
+    padding:30px;
+}
+
+.header{
+    background:white;
+    padding:20px;
+    border-bottom:1px solid #ddd;
+}
+
+.card{
+    background:white;
+    border-radius:12px;
+    padding:30px;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+.titulo{
+    color:#006341;
+}
+
+.btn-hospital{
+    background:#006341;
+    color:white;
+}
+
+.btn-hospital:hover{
+    background:#004d32;
+    color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+<img src="img/logo.png">
+
+<h3>Hospital San Gabriel</h3>
+
+<p>Sistema Integral Médico</p>
+
+</div>
+
+<a href="index.php">Inicio</a>
+<a href="pacientes.php">Pacientes</a>
+<a href="doctores.php">Doctores</a>
+<a href="citas.php">Citas</a>
+<a href="consultas.php">Consultas</a>
+<a href="recetas.php">Recetas</a>
+<a href="reportes.php">Reportes</a>
+<a href="logout.php">Cerrar sesión</a>
+
+</div>
+
+<div class="contenido">
+
+<div class="header">
+
+<h4>Registro de Pacientes</h4>
+
+<p>
+Usuario:
+<b><?php echo $_SESSION['usuario']; ?></b>
+</p>
+
+</div>
+
+<div class="card mt-4">
+
+<h2 class="titulo">
+Nuevo Paciente
+</h2>
+
+<form action="guardar_paciente.php" method="POST">
+
+<div class="mb-3">
+<label>Matrícula</label>
+<input type="text" name="matricula" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Apellido paterno</label>
+<input type="text" name="apellido_paterno" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Apellido materno</label>
+<input type="text" name="apellido_materno" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Nombre</label>
+<input type="text" name="nombre" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Edad</label>
+<input type="number" name="edad" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Sexo</label>
+
+<select name="sexo" class="form-select">
+
+<option value="Masculino">Masculino</option>
+<option value="Femenino">Femenino</option>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+<label>Teléfono</label>
+<input type="text" name="telefono" class="form-control">
+</div>
+
+<div class="mb-3">
+<label>Dirección</label>
+<input type="text" name="direccion" class="form-control">
+</div>
+
+<div class="mb-4">
+<label>Diagnóstico</label>
+<input type="text" name="diagnostico" class="form-control">
+</div>
+
+<button type="submit" class="btn btn-hospital">
+
+Guardar Paciente
+
+</button>
+
+<a href="pacientes.php" class="btn btn-outline-secondary">
+
+Cancelar
+
+</a>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+</html>
